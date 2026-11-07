@@ -1,0 +1,7 @@
+Real-Time Manufacturing Analytics Dashboard
+
+Includes software and Fabric definitions from Microsoft's Real-Time Intelligence
+Operations Solution Accelerator, distributed under the MIT License.
+Original copyright notices and license terms are retained in LICENSE.
+FactoryPulse additions include sharded workloads, transport batching, validation,
+BI query definitions, benchmark runners, regression tests, and operating documentation.

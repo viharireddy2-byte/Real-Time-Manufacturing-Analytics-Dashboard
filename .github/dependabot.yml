@@ -1,0 +1,30 @@
+version: 2
+
+updates:
+  # GitHub Actions - grouped
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "build"
+    open-pull-requests-limit: 10
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  # Python dependencies - grouped
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "build"
+    open-pull-requests-limit: 10
+    groups:
+      python-deps:
+        patterns:
+          - "*"
+#     url: "https://registry.npmjs.org/"
+#     token: ${{ secrets.TOKEN }}

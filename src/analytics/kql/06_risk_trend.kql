@@ -1,0 +1,6 @@
+.create-or-alter function with (folder='FactoryPulse', docstring='Fast arrival-weighted hourly risk over materialized aggregate. Duplicate arrivals count as samples; unsuitable for financial reconciliation.') RiskTrend(Start:datetime, End:datetime) {
+    AssetHourlyArrivals
+    | where Hour >= Start and Hour < End
+    | summarize Samples=sum(Samples), RiskSum=sum(RiskSum), HighRiskSamples=sum(HighRiskSamples) by Hour
+    | extend AverageRisk=RiskSum / Samples, HighRiskSamplePct=100.0 * HighRiskSamples / Samples
+}

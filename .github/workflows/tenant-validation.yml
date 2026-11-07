@@ -1,0 +1,45 @@
+name: Tenant validation
+on:
+  workflow_dispatch:
+    inputs:
+      cluster:
+        description: Eventhouse HTTPS query URI
+        required: true
+        type: string
+      database:
+        description: Empty dedicated fp_test_ database
+        required: true
+        type: string
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  kql-integration:
+    runs-on: ubuntu-latest
+    environment: fabric-validation
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Install existing cloud SDK dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Capture tested environment
+        run: python infra/scripts/benchmarks/capture_environment.py --output benchmark-output/environment.json
+      - name: Validate isolated KQL database
+        env:
+          FABRIC_TEST_CLUSTER: ${{ inputs.cluster }}
+          FABRIC_TEST_DATABASE: ${{ inputs.database }}
+        run: python infra/scripts/fabric/validate_tenant.py --cluster "$FABRIC_TEST_CLUSTER" --database "$FABRIC_TEST_DATABASE" --allow-write --output benchmark-output/tenant-validation.json
+      - name: Preserve validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tenant-validation
+          path: benchmark-output/

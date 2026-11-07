@@ -1,0 +1,7 @@
+.create-or-alter function with (folder='FactoryPulse/V2', docstring='Exact bounded event-window reconciliation. Duplicate counts are not approximate; conflicting IDs require investigation.') ReconcileWindowV2(Start:datetime, End:datetime) {
+    let perId = events | where Timestamp >= Start and Timestamp < End
+        | summarize Copies=count() by Id, AssetId, ProductId, BatchId, Timestamp, Vibration, Temperature, Humidity, Speed, DefectProbability
+        | summarize Arrivals=sum(Copies), PayloadVariants=count() by Id;
+    perId
+    | summarize RawArrivals=sum(Arrivals), LogicalEvents=count(), DuplicateArrivals=sum(Arrivals - 1), ConflictingIds=countif(PayloadVariants > 1), MissingIdentityGroups=countif(isempty(Id))
+}

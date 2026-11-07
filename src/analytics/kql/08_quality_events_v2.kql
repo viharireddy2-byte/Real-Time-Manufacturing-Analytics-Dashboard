@@ -1,0 +1,8 @@
+.create-or-alter function with (folder='FactoryPulse/V2', docstring='Logical telemetry samples with canonical risk bands and current-state dimension enrichment.') QualityEventsV2(Start:datetime, End:datetime) {
+    let warning = toscalar(RiskPolicyV2() | project WarningProbability);
+    let critical = toscalar(RiskPolicyV2() | project CriticalProbability);
+    EventsWindow(Start, End)
+    | join kind=leftouter (assets | summarize take_any(*) by Id | project AssetKey=Id, AssetName=Name, SiteId) on $left.AssetId == $right.AssetKey
+    | join kind=leftouter (products | summarize take_any(*) by Id | project ProductKey=Id, UnitCost) on $left.ProductId == $right.ProductKey
+    | extend RiskBand=case(isnull(DefectProbability) or DefectProbability < 0 or DefectProbability > 1, 'Invalid', DefectProbability > critical, 'Critical', DefectProbability > warning, 'Warning', 'Normal')
+}

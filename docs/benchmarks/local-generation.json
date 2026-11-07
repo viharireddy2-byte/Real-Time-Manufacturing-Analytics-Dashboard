@@ -1,0 +1,25 @@
+{
+  "scope": "local synthetic CSV generation only; not cloud ingestion or queries",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "python": "3.12.14",
+  "cpu_count_visible": 9,
+  "rows_per_shard": 10000,
+  "runs": [
+    {
+      "events": 10000,
+      "seconds": 0.458551800999885,
+      "rows_per_second": 21807.786989811666,
+      "csv_bytes": 1266276,
+      "shards": 1,
+      "peak_rss_kib": 13824
+    },
+    {
+      "events": 100000,
+      "seconds": 5.487333871999908,
+      "rows_per_second": 18223.786329143866,
+      "csv_bytes": 12662307,
+      "shards": 10,
+      "peak_rss_kib": 13884
+    }
+  ]
+}

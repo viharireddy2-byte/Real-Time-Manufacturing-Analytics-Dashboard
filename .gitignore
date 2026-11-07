@@ -1,0 +1,28 @@
+# VS Code workspace settings
+.vscode
+
+# .azure folder 
+.azure/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Python virtual environments
+.venv/  
+venv/
+
+# Python bytecode cache
+# Automatically generated when Python runs .py files
+__pycache__/
+
+/infra/data/temp/
+# Generated workloads and benchmark scratch output
+workload/
+benchmark-output/
+*.partial
+
+# Durable replay state stays with its workload, never in source control
+*.checkpoint.json
+*.checkpoint.json.lock

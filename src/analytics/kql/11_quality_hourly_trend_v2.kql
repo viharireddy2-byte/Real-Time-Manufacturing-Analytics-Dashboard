@@ -1,0 +1,6 @@
+.create-or-alter function with (folder='FactoryPulse/V2', docstring='Arrival-weighted canonical risk trend. Requires UTC hour boundaries; duplicate arrivals counted.') QualityHourlyTrendV2(Start:datetime, End:datetime) {
+    QualityHourlyArrivalsV2
+    | where Hour >= Start and Hour < End
+    | summarize Samples=sum(Samples), RiskSum=sum(RiskSum), CriticalSamples=sum(CriticalSamples), WarningSamples=sum(WarningSamples) by Hour
+    | extend AverageRisk=RiskSum / Samples, CriticalSamplePct=100.0 * CriticalSamples / Samples
+}

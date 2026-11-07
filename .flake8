@@ -1,0 +1,23 @@
+[flake8]
+max-line-length = 88
+extend-ignore =
+    # Docstring warnings (D-series) - these are style preferences
+    D100, D101, D102, D103, D107, D400, D401
+    # Type annotation warnings (ANN-series) - gradually add these
+    ANN001, ANN101, ANN201, ANN202, ANN204, ANN205
+    # Import order warnings (I-series) - handled by isort
+    I100, I101, I201, I202
+    # Whitespace in blank lines
+    W293
+    # F-string without placeholders (often intentional for consistency)
+    F541
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    *.egg-info,
+    .tox,
+    .eggs
+per-file-ignores =
+    __init__.py:F401

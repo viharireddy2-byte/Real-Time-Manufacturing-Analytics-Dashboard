@@ -1,0 +1,166 @@
+{
+  "source_repository": "microsoft/real-time-intelligence-operations-solution-accelerator",
+  "source_commit": "d2f8e7684de02f81182218ab6da41e23c5bda1de",
+  "files": [
+    {
+      "path": "docs/images/AzureHomePage.png",
+      "sha256": "64a542ce1d009c4ac0db075ad943ba426f2da30764195d099ca3518bf3aac669",
+      "bytes": 89286
+    },
+    {
+      "path": "docs/images/deployment/activator-email-alert.png",
+      "sha256": "758e2d58c8d1c11c1edd4d1fda79a8375113e323fe3a20a9f348bfd710850494",
+      "bytes": 73482
+    },
+    {
+      "path": "docs/images/deployment/activator-rule-example-teams.png",
+      "sha256": "5f468baaf0a4b4aba2f480513b5cf306ecfa8fec1432ca92b3271c3737d35555",
+      "bytes": 113961
+    },
+    {
+      "path": "docs/images/deployment/activator-rule-example-vibration.png",
+      "sha256": "c9a1ed58b6428af3f61fbeb16b90592e5a01878dae0cafd2ca5af8c6b7608dca",
+      "bytes": 217300
+    },
+    {
+      "path": "docs/images/deployment/anomaly-email-alerts.png",
+      "sha256": "e996d5002f5488916753371b29475e6bb564d033d09f93c570227e05facbae36",
+      "bytes": 40980
+    },
+    {
+      "path": "docs/images/deployment/data_agent_tables_selected.png",
+      "sha256": "ae78ccc15f6b9fb9e6c10674218bdb0c7083870731e9172f03f2334b642399f0",
+      "bytes": 106962
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_azure.png",
+      "sha256": "7085ac7bd9f90b70779b3fce94b6f77717fdf66dfe6d705cf3ca1d85966b0fb4",
+      "bytes": 1048742
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_activator.png",
+      "sha256": "a0ebd32160df402fe3145943264cf861c7f88dc57dbff6c9d68e85876f239ca4",
+      "bytes": 801666
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_activator_rules.png",
+      "sha256": "36071d03fdb1beb8bc8bded065c7a2062ce4724da57884718a510217a90d5b66",
+      "bytes": 969790
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_dataagent.png",
+      "sha256": "25ad435e158f4abf014b1685fb1279a352c0c119827cca432495e02160014558",
+      "bytes": 1001717
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_dataagent_configuration_environment.png",
+      "sha256": "1ac1a2782afb54a34b4e8eedb4d96e3c54d5fac2331cd97404d13f6c7cfe156e",
+      "bytes": 942513
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_dataagent_configuration_folder.png",
+      "sha256": "c40a3031a4b471ddbe5aa12ddc78905333d56c330ca3def4338b70e6770b41bd",
+      "bytes": 624528
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_dataagent_configuration_notebook.png",
+      "sha256": "5957559fb558209c550bb22e7ca5ce066322ce1987ed6519b8a6c36a1ea7163b",
+      "bytes": 1926189
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_eventhouse.png",
+      "sha256": "f179ce1f1bb14ee4ef46caccb0047734d9b80dcba949e13818cfc2a792af6b0f",
+      "bytes": 814396
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_eventhub_connection.png",
+      "sha256": "7efba9394a20bfcf1c41ac5b5e270e4daf8c120db285ce17e18b88be45dd8591",
+      "bytes": 686573
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_eventstream.png",
+      "sha256": "95a57c083eb5b6bc016372adbca288289b3edf5f579f6c801151dc67c312803b",
+      "bytes": 837736
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_kql_database.png",
+      "sha256": "a0d3b9e2b6d175d6461343fab5271cb76b73b38ebd47d6e84cb842b894423bab",
+      "bytes": 1133832
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_real-time_dashboard.png",
+      "sha256": "b40df84c6c2983d6b8c961ad636587c72598809212d6b7534d36a8119f783b46",
+      "bytes": 1425531
+    },
+    {
+      "path": "docs/images/deployment/deployment_overview_fabric_workspace.png",
+      "sha256": "152563808157440614b63ef449cee75e66fbe102f342639ef041c3a23c3c4c6c",
+      "bytes": 715088
+    },
+    {
+      "path": "docs/images/deployment/eventhubs-data-sender-role.png",
+      "sha256": "1fcd2da749767954dfc3c6440c369193121ef02706e61059d7dc9fe9e2c817fd",
+      "bytes": 149415
+    },
+    {
+      "path": "docs/images/deployment/fabric_data_agent_ui.png",
+      "sha256": "af4513ce1341b3b04dd81c8ab0cacf9fe50fac5ec73d998936765dff7af9b819",
+      "bytes": 169132
+    },
+    {
+      "path": "docs/images/deployment/rti-dashboard-anomaly-spikes.png",
+      "sha256": "f355054a96edd48f0780571bd382dea238d1410d92442ac6c4f71a2cd9e504b3",
+      "bytes": 367310
+    },
+    {
+      "path": "docs/images/readme/business-scenario.png",
+      "sha256": "ca72846a188cbc277ebde9a7e76c26544f13e2465172003c25be07400e10b596",
+      "bytes": 14787
+    },
+    {
+      "path": "docs/images/readme/quick-deploy.png",
+      "sha256": "844f98befd4624d23eb13dd2845cb873053e0e6dec13ec012598bc2e2d1e52af",
+      "bytes": 19499
+    },
+    {
+      "path": "docs/images/readme/rti-dashboard-pg1.png",
+      "sha256": "a39d0142eb55e233764b3b72f1491513253ef59a1c4d15d7f1258be568ca640c",
+      "bytes": 121994
+    },
+    {
+      "path": "docs/images/readme/rti-dashboard-pg2.png",
+      "sha256": "9d8e807ef6937dd88c88cb1b050913d341fc91856ad00bc7a399b1cffa8b24c7",
+      "bytes": 79144
+    },
+    {
+      "path": "docs/images/readme/rti-dashboard.png",
+      "sha256": "44ca3fdeac708261277b50e2d9c533fd28b36c9db1c2b6206925da8a7521540b",
+      "bytes": 146675
+    },
+    {
+      "path": "docs/images/readme/solution-architecture.png",
+      "sha256": "479b6402fadc63ced8b64030e7c9611a336622642134138bfc9bc3e6161ddadc",
+      "bytes": 101365
+    },
+    {
+      "path": "docs/images/readme/solution-overview.png",
+      "sha256": "680c9aed79d17168aeb651db1418576d6b853affe506dfb4a2f131f0409519c5",
+      "bytes": 15891
+    },
+    {
+      "path": "docs/images/readme/supporting-documentation.png",
+      "sha256": "cc42f3e121920750b59c5a9800670aa274e61f3dc27fed95183ce8a077bd5149",
+      "bytes": 17402
+    },
+    {
+      "path": "docs/images/resourcegroup1.png",
+      "sha256": "9f8b55114f67a1c170aa375a1b2c62e3d77ff43549d72064ba17b8d1636fa735",
+      "bytes": 71702
+    },
+    {
+      "path": "infra/data/events.csv",
+      "sha256": "e22c066a4ac756737cfc340313bd30a7803cbe9e4e608de78587fd7ad6f10c01",
+      "bytes": 32041498
+    }
+  ]
+}

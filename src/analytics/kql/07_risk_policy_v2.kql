@@ -1,0 +1,4 @@
+.create-or-alter function with (folder='FactoryPulse/V2', docstring='Canonical sample risk bands, strict greater-than comparison.') RiskPolicyV2() {
+    datatable(WarningProbability:real, CriticalProbability:real, LegacyExtremeProbability:real)
+    [0.02, 0.05, 0.5]
+}

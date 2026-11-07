@@ -1,0 +1,46 @@
+// =============================================================================
+// Service Order Data Enrichment Function
+// =============================================================================
+// Purpose: Creates a reusable KQL function to enrich event data with 
+//          dimensional information from assets, sites, locations, and products
+// Usage: Can be called from Activator rules or other KQL queries
+// =============================================================================
+
+// Create FULL enrichment function - assets + sites + locations + products
+.create-or-alter function EnrichEventData(eventAssetId: string, eventProductId: string) {
+    assets
+    | where Id == eventAssetId
+    | extend 
+        AssetName = Name,
+        AssetType = Type,
+        AssetSerialNumber = SerialNumber,
+        AssetMaintenanceStatus = MaintenanceStatus
+    | lookup kind=inner sites on $left.SiteId == $right.Id
+    | lookup kind=inner locations on $left.LocationId == $right.Id
+    | extend ProductId = eventProductId
+    | lookup kind=inner products on $left.ProductId == $right.Id
+    | project 
+        // Asset information
+        AssetName,
+        AssetType,
+        AssetSerialNumber,
+        AssetMaintenanceStatus,
+        // Site information  
+        SiteId = SiteId,
+        SiteName = Name1,
+        SitePlantType = PlantType,
+        // Location information
+        LocationId = LocationId,
+        LocationCity = City,
+        LocationCountry = Country,
+        // Product information
+        ProductName = Name2,
+        ProductCategory = CategoryName,
+        ProductBrandName = BrandName,
+        ProductColor = Color,
+        ProductListPrice = ListPrice
+}
+
+// Invoke directly with asset/product IDs selected from your deployed dimensions.
+// For bulk enrichment, join events to dimension tables as QualityEventsV2 does.
+// This function returns a table and cannot be assigned as a scalar extend value.

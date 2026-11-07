@@ -1,0 +1,5 @@
+.create-or-alter function with (folder='FactoryPulse', docstring='Event-time window; latest row per event ID within the window. Half-open UTC bounds.') EventsWindow(Start:datetime, End:datetime) {
+    events
+    | where Timestamp >= Start and Timestamp < End
+    | summarize arg_max(Timestamp, *) by Id
+}

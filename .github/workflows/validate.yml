@@ -1,0 +1,26 @@
+name: Validate repository
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  offline-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Python
+        run: python -m compileall -q src infra/scripts
+      - name: Run offline regressions
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Validate publication assets
+        run: python infra/scripts/validate_repository.py
+      - name: Validate generated assets are reproducible
+        run: |
+          python infra/scripts/fabric/build_analytics_assets.py
+          git diff --exit-code -- src/analytics/kql src/definitions/realTimeDashboard

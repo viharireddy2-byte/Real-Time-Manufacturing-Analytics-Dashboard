@@ -1,0 +1,7 @@
+.create-or-alter function with (folder='FactoryPulse/V2', docstring='Deduplicated sample risk by site. Unit-cost index is a model-weighted per-sample index, not realized loss.') QualitySiteSummaryV2(Start:datetime, End:datetime) {
+    QualityEventsV2(Start, End)
+    | summarize LogicalSamples=count(), CriticalSamples=countif(RiskBand == 'Critical'), WarningSamples=countif(RiskBand == 'Warning'),
+        InvalidSamples=countif(RiskBand == 'Invalid'), AverageRisk=avg(DefectProbability),
+        RiskWeightedUnitCostIndex=avg(DefectProbability * UnitCost), MissingCostSamples=countif(isnull(UnitCost)), MissingSiteSamples=countif(isnull(SiteId)) by SiteId
+    | extend CriticalSamplePct=100.0 * CriticalSamples / LogicalSamples
+}

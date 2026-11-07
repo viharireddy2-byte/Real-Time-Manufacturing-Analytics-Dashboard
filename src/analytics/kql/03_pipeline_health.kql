@@ -1,0 +1,11 @@
+.create-or-alter function with (folder='FactoryPulse', docstring='Arrival-window pipeline health. Future timestamps reported separately; approximate distinct count for operational monitoring.') PipelineHealth(Start:datetime, End:datetime) {
+    events
+    | extend Arrived=ingestion_time()
+    | where Arrived >= Start and Arrived < End
+    | extend DelaySeconds=datetime_diff('second', Arrived, Timestamp)
+    | summarize Arrivals=count(), ApproxDistinctEvents=dcount(Id),
+        FutureTimestampSamples=countif(DelaySeconds < 0),
+        InvalidProbabilitySamples=countif(isnull(DefectProbability) or DefectProbability < 0 or DefectProbability > 1),
+        P50DelaySeconds=percentile(DelaySeconds, 50), P95DelaySeconds=percentile(DelaySeconds, 95),
+        LastEventTime=max(Timestamp)
+}

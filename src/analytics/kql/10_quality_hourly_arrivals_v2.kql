@@ -1,0 +1,5 @@
+.create async ifnotexists materialized-view with (backfill=true) QualityHourlyArrivalsV2 on table events {
+    events
+    | summarize Samples=count(), RiskSum=sum(DefectProbability), CriticalSamples=countif(DefectProbability > 0.05),
+        WarningSamples=countif(DefectProbability > 0.02 and DefectProbability <= 0.05) by AssetId, Hour=bin(Timestamp, 1h)
+}

@@ -1,0 +1,11 @@
+.create-or-alter function with (folder='FactoryPulse', docstring='Hourly site risk; probabilities are modeled, not measured defect outcomes. Missing dimensions are retained.') SiteRisk(Start:datetime, End:datetime) {
+    EventsWindow(Start, End)
+    | join kind=leftouter (assets | summarize take_any(*) by Id | project AssetKey=Id, SiteId) on $left.AssetId == $right.AssetKey
+    | join kind=leftouter (products | summarize take_any(*) by Id | project ProductKey=Id, UnitCost) on $left.ProductId == $right.ProductKey
+    | summarize EventCount=count(), HighRiskSamples=countif(DefectProbability >= 0.5),
+        ExpectedDefects=sum(DefectProbability), ExpectedCostExposure=sum(DefectProbability * UnitCost),
+        MissingCostSamples=countif(isnull(UnitCost)), MissingSiteSamples=countif(isnull(SiteId)),
+        AverageTemperature=avg(Temperature), AverageSpeed=avg(Speed)
+      by SiteId, Hour=bin(Timestamp, 1h)
+    | extend HighRiskSamplePct=100.0 * HighRiskSamples / EventCount
+}

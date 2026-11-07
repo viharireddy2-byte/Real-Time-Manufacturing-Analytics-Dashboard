@@ -1,0 +1,39 @@
+name: Restore pinned sample assets
+on:
+  push:
+    paths:
+      - infra/asset-manifest.json
+      - infra/scripts/restore_assets.py
+      - .github/workflows/restore-assets.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: restore-pinned-assets
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore and verify pinned assets
+        run: python infra/scripts/restore_assets.py
+      - name: Validate complete project
+        env:
+          PYTHONPATH: src
+        run: |
+          python -m unittest discover -s tests -q
+          python infra/scripts/validate_repository.py
+      - name: Commit restored assets when missing
+        run: |
+          git add -- docs/images infra/data/events.csv
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Add verified sample telemetry and documentation images'
+            git push origin HEAD:main
+          fi
