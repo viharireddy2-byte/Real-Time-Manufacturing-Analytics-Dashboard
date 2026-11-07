@@ -19,11 +19,11 @@ jobs:
     environment: fabric-validation
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
-      - uses: azure/login@v2
+      - uses: azure/login@v3
         with:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -39,7 +39,7 @@ jobs:
         run: python infra/scripts/fabric/validate_tenant.py --cluster "$FABRIC_TEST_CLUSTER" --database "$FABRIC_TEST_DATABASE" --allow-write --output benchmark-output/tenant-validation.json
       - name: Preserve validation evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: tenant-validation
           path: benchmark-output/
